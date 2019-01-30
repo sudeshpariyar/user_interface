@@ -1,26 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getNews } from "../../../actions/index";
+import { store } from "../../../index";
 
 class News extends Component {
-  // constructor(props) {
-  //   super(props);
-  //   this.state = {
-  //     news: null,
-  //     isLoaded: false
-  //   };
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {
+      news: null,
+      isLoaded: false
+    };
+  }
   async componentDidMount() {
-    // const url =
-    //   "http://webhose.io/filterWebContent?token=f45b00db-4f90-4c45-b0ae-204afa574b3a&format=json&sort=crawled&q=stock%20market%20language%3Aenglish";
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // this.setState({
-    //   isLoaded: true,
-    //   news: data
-    // });
-    this.props.getNews();
-    console.log(this.props.isLoaded,this.props.news);
+    store.dispatch(getNews());
+    this.setState({
+      isLoaded: true
+    });
+    console.log(this.state.isLoaded, this.props.posts);
   }
 
   render() {
@@ -89,19 +85,11 @@ class News extends Component {
           ))}
         </div>
       );
-    } // const url =
-    //   "http://webhose.io/filterWebContent?token=f45b00db-4f90-4c45-b0ae-204afa574b3a&format=json&sort=crawled&q=stock%20market%20language%3Aenglish";
-    // const response = await fetch(url);
-    // const data = await response.json();
-    // this.setState({
-    //   isLoaded: true,
-    //   news: data
-    // });
+    }
   }
 }
 const mapStateToProps = state => {
   return {
-    isLoaded: state.isLoaded,
     posts: state.news
   };
 };

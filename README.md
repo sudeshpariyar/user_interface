@@ -1,3 +1,5 @@
+# This is a simple user interface project which use react and redux
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
